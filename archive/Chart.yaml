@@ -1,0 +1,28 @@
+apiVersion: v2
+appVersion: 1.0.0
+dependencies:
+- name: auth-service
+  repository: file://charts/auth-service
+  version: 1.0.0
+- name: common-service
+  repository: file://charts/common-service
+  version: 1.0.0
+- name: discount-service
+  repository: file://charts/discount-service
+  version: 1.0.0
+- name: guides-service
+  repository: file://charts/guides-service
+  version: 1.0.0
+- name: news-service
+  repository: file://charts/news-service
+  version: 1.0.0
+- name: qa-service
+  repository: file://charts/qa-service
+  version: 1.0.0
+- name: timed-deal-service
+  repository: file://charts/timed-deal-service
+  version: 1.0.0
+description: A Parent Chart for MSA-based project
+name: archive
+type: application
+version: 1.0.0

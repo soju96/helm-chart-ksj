@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-nginx
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Chart.Name }}-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-nginx
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: {{ .Values.nginx.port | int }}
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: {{ .Release.Name }}-nginx-config
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-nginx-config
+  namespace: {{ .Values.namespace }}
+data:
+  nginx.conf: |
+    events {}
+    http {
+      upstream flask-backend {
+        server {{ .Release.Name }}-flask:{{ .Values.service.port | int }};
+      }
+       
+      server {
+        listen {{ .Values.nginx.port | int }};
+
+        location / {
+          proxy_pass http://flask-backend; # 기본 경로를 Flask 백엔드로 전달
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        location /nginx_status {
+          stub_status;           # 상태 페이지 활성화
+          allow all;             # 내부 네트워크에서 허용
+        }
+      }
+    }

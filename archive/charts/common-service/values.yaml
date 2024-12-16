@@ -1,0 +1,11 @@
+# charts/common-service/values.yaml
+namespace: common-service
+image:
+  repository: example.com/common-service
+  tag: latest
+service:
+  port: 5001
+  type: LoadBalancer
+  loadBalancerIP: "192.168.109.241" # IP 대역을 염두해서 설정할 것!
+nginx:
+  port: 80

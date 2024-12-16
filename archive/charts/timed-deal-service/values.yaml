@@ -1,0 +1,11 @@
+# charts/timed-deal-service/values.yaml
+namespace: timed-deal-service
+image:
+  repository: example.com/timed-deal-service
+  tag: latest
+service:
+  port: 5007
+  type: LoadBalancer
+  loadBalancerIP: "192.168.109.247" # IP 대역을 염두해서 설정할 것!
+nginx:
+  port: 80

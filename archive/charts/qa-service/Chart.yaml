@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Helm Chart for qa Service
+name: qa-service
+type: application
+version: 1.0.0

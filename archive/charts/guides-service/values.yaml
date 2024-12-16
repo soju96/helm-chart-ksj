@@ -1,0 +1,11 @@
+# charts/guides-service/values.yaml
+namespace: guides-service
+image:
+  repository: example.com/guides-service
+  tag: latest
+service:
+  port: 5003
+  type: LoadBalancer
+  loadBalancerIP: "192.168.109.243" # IP 대역을 염두해서 설정할 것!
+nginx:
+  port: 80

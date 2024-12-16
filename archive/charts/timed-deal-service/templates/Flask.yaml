@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-flask
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Chart.Name }}-flask
+spec:
+  replicas: {{ .Values.global.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-flask
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-flask
+    spec:
+      containers:
+        - name: flask
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.service.port | int }}
+

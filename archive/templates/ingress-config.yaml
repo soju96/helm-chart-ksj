@@ -1,0 +1,62 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-config
+  namespace: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: auth-service-nginx-external
+            port:
+              number: 80
+      - path: /discount
+        pathType: Prefix
+        backend:
+          service:
+            name: discount-service-nginx-external
+            port:
+              number: 80
+      - path: /guides
+        pathType: Prefix
+        backend:
+          service:
+            name: guides-service-nginx-external
+            port:
+              number: 80
+      - path: /news
+        pathType: Prefix
+        backend:
+          service:
+            name: news-service-nginx-external
+            port:
+              number: 80
+      - path: /qa
+        pathType: Prefix
+        backend:
+          service:
+            name: qa-service-nginx-external
+            port:
+              number: 80
+      - path: /timed-deal
+        pathType: Prefix
+        backend:
+          service:
+            name: timed-deal-service-nginx-external
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: common-service-nginx-external
+            port:
+              number: 80

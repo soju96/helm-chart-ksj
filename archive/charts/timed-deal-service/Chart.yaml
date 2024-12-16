@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Helm Chart for timed-deal Service
+name: timed-deal-service
+type: application
+version: 1.0.0

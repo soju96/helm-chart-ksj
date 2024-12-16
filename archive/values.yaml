@@ -1,0 +1,66 @@
+# archive/values.yaml
+global:
+  replicas: 1
+
+auth-service:
+  namespace: auth-service
+  image:
+    repository: sungjookim/ga
+    tag: auth
+  service:
+    port: 5006
+    loadBalancerIP: 192.168.105.156  # IP 대역을 염두해서 설정할 것!
+
+common-service:
+  namespace: common-service
+  image:
+    repository: sungjookim/ga
+    tag: common
+  service:
+    port: 5001
+    loadBalancerIP: 192.168.105.151  # IP 대역을 염두해서 설정할 것!
+
+discount-service:
+  namespace: discount-service
+  image:
+    repository: sungjookim/ga
+    tag: discount
+  service:
+    port: 5002
+    loadBalancerIP: 192.168.105.152  # IP 대역을 염두해서 설정할 것!
+
+guides-service:
+  namespace: guides-service
+  image:
+    repository: sungjookim/ga
+    tag: guides
+  service:
+    port: 5003
+    loadBalancerIP: 192.168.105.153  # IP 대역을 염두해서 설정할 것!
+
+news-service:
+  namespace: news-service
+  image:
+    repository: sungjookim/ga
+    tag: news
+  service:
+    port: 5004
+    loadBalancerIP: 192.168.105.154  # IP 대역을 염두해서 설정할 것!
+
+qa-service:
+  namespace: qa-service
+  image:
+    repository: sungjookim/ga
+    tag: qa
+  service:
+    port: 5005
+    loadBalancerIP: 192.168.105.155  # IP 대역을 염두해서 설정할 것!
+
+timed-deal-service:
+  namespace: timed-deal-service
+  image:
+    repository: sungjookim/ga
+    tag: time-deal
+  service:
+    port: 5007
+    loadBalancerIP: 192.168.105.157  # IP 대역을 염두해서 설정할 것!
